@@ -47,3 +47,4 @@ done
 totalWageOfMonth=$(($(calculateWage $totalEmployeeHours)))
 echo "Daily wages: ${dailyWage[@]}"
 echo "Total Wage:" $totalWageOfMonth
+echo "Day:${!dailyWage[@]}"
