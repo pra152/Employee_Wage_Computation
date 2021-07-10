@@ -1,30 +1,40 @@
 echo Welcome TO Employee Wage Computation.
-wage_per_hour=20
-is_full_time=2
-is_part_time=1
-Employee_hour_fulltime=8
-Employee_hour_parttime=4
-read -p "To Number of Working day:" Number_of_working_days
-read -p "To Number of working hours:" Number_of_working_hours
-totalSalary=0
-totalEmployeeHours=0
-totalworkingdays=0
-while [[ $totalEmployeeHours -le $Number_of_working_Hours && $totalworkingdays -le $Number_of_working_days ]]
-do
-	((totalworkingdays++))
-	randomcheck=$((RANDOM%3))
-	case $randomcheck in
-		$is_full_time )
-			    employeeHour=$((Employee_hour_fulltime))
-			     ;;
-		$is_part_time )
-			    employeeHour=$((Employee_hour_parttime))
-			     ;;
-		* )
-			    employeeHour=0
-			     ;;
-	   esac
-	   totalEmployeeHours=$(($totalEmployeeHours + $employeeHour))
-	   echo "To total employee hours :" $totalEmployeeHours
-done
-totalWorkingWage=$(($totalEmployeeHours * $wage_per_hour))
+isPresent=1
+randomNumber=$((RANDOM%2))
+echo "Choice"
+read -p "Enter Any Case :" caseChoice
+if [ $randomNumber -eq 	$isPresent ]
+then
+	echo "Employee Present"
+	case "$caseChoice" in
+		0) echo "To calculate Daily Employee Wage"
+
+			function calculateDailyEmployeeWageWorkHours(){
+			read -p "Assume Wage per hour is :" isWagePerHour "rupees"
+			isDayHour=8
+			calculateEmployeeWageForOneDay=$(( $isWagePerHour * $isDayHour ))
+			read -p "working days :" isDay
+			calculateEmployeeWageForMonth=$(( $calculateEmployeeWageForOneDay  *  $isDay ))
+			echo "To calculate employee wages for a Month :" $calculateEmployeeWageForMonth "rupees"
+		}
+		calculateDailyEmployeeWageWorkHours
+		;;
+	1)echo "To calculate part time Employee and wage"
+		function partTimeEmployeeAndWageWorkHours(){
+			read -p "Assume Wage per hour is :" isWagePerHour "rupees"
+			isDayHour=8
+			calculateEmployeeWageForOneDay=$(( $isWagePerHour * $isDayHour ))
+			read -p "TO part time working days :" isDay
+			calculateEmployeeWageForMonth=$(( $calculateEmployeeWageForOneDay * $isDay ))
+			echo "To calculate employee part time wages for a Month :" $calculateEmployeeWageForMonth "rupees"
+		}
+		partTimeEmployeeAndWageWorkHours
+		;;
+
+		*)echo "No choice."
+		;;
+esac
+
+else
+   echo "Employee Absent."
+ fi
